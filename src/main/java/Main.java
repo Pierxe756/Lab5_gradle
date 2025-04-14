@@ -11,7 +11,14 @@ import static creators.CoordinatesCreator.createCoordinates;
 
 public class Main {
     public static void main(String[] args) {
-        Engine engine = new Engine(args);
-        engine.runProgramm();
+
+        try {
+            Engine engine = new Engine(args);
+            engine.runProgramm();
+        } catch (Exception e) {
+            Engine engine = new Engine("collection.csv".split(" "));
+            engine.runProgramm();;
+        }
+
     }
 }

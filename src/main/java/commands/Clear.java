@@ -17,7 +17,7 @@ public class Clear extends Command implements Executable{
             System.out.println("Коллекция уже пуста!");
             return false;
         }
-        linkedList.clear();
+        CollectionManager.setStudyGroupList(new LinkedList<StudyGroup>());
         System.out.println("Коллекция успешно очищена.");
         return false;
     }

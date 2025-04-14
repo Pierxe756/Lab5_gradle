@@ -23,7 +23,7 @@ public class ThanSholdBeExpelled extends Command implements Executable{
         LinkedList<StudyGroup> linkedList = CollectionManager.getCollection();
         StudyGroup groupExpelled = null;
         for (StudyGroup group : linkedList) {
-            if (StudyGroup.getShouldBeExpelled() > Integer.valueOf(splitedConsoleRead[1])) {
+            if (group.getShouldBeExpelled() > Integer.valueOf(splitedConsoleRead[1])) {
                 count++;
                 break;
             }

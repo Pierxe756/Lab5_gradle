@@ -1,19 +1,36 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import managers.CollectionManager;
+import managers.PersonDeserializer;
+import managers.PersonSerializer;
+import managers.SemesterDeserializer;
 
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 
 public class StudyGroup implements Comparable{
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+
     private String name; //Поле не может быть null, Строка не может быть пустой
+    @JsonUnwrapped(prefix = "coordinates_")
     private Coordinates coordinates; //Поле не может быть null
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
     private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer studentsCount; //Значение поля должно быть больше 0, Поле может быть null
-    private static Long shouldBeExpelled; //Значение поля должно быть больше 0, Поле не может быть null
+    private Long shouldBeExpelled; //Значение поля должно быть больше 0, Поле не может быть null
     private Integer transferredStudents; //Значение поля должно быть больше 0, Поле может быть null
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
+    @JsonSetter(nulls = Nulls.SKIP) // Пропускать null
+    @JsonDeserialize(using = SemesterDeserializer.class)
     private Semester semesterEnum; //Поле может быть null
+    @JsonSerialize(using = PersonSerializer.class)
+    @JsonDeserialize(using = PersonDeserializer.class)
     private Person groupAdmin; //Поле может быть null
 
     public StudyGroup() {
@@ -32,8 +49,18 @@ public class StudyGroup implements Comparable{
         }
     }
 
-    public static void clear() {
 
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public Integer getTransferredStudents() {
+        return transferredStudents;
+    }
+
+    public Semester getSemesterEnum() {
+        return semesterEnum;
     }
 
     public Person getGroupAdmin() {
@@ -112,7 +139,7 @@ public class StudyGroup implements Comparable{
         return studentsCount;
     }
 
-    public static Long getShouldBeExpelled() {
+    public Long getShouldBeExpelled() {
         return shouldBeExpelled;
     }
 }

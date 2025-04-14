@@ -6,6 +6,22 @@ public class Location {
     private long z;
     private String name; //Поле не может быть null
 
+    public double getX() {
+        return x;
+    }
+
+    public Float getY() {
+        return y;
+    }
+
+    public long getZ() {
+        return z;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public void setX(double x) {
         this.x = x;
     }
@@ -28,7 +44,7 @@ public class Location {
                 "x=" + x +
                 ", y=" + y +
                 ", z=" + z +
-                ", name='" + name + '\'' +
+                ", name=" + name  +
                 '}';
     }
 }

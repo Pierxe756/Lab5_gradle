@@ -5,6 +5,14 @@ public class Person {
     private String passportID; //Значение этого поля должно быть уникальным, Строка не может быть пустой, Длина строки не должна быть больше 20, Поле не может быть null
     private Location location; //Поле может быть null
 
+    public String getName() {
+        return name;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
     public String getPassportID() {
         return passportID;
     }

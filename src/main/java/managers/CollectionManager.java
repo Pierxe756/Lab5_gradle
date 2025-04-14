@@ -19,4 +19,8 @@ public class CollectionManager {
     public static LinkedList<StudyGroup> getCollection() {
         return studyGroupList;
     }
+
+    public static void setStudyGroupList(LinkedList<StudyGroup> studyGroupList) {
+        CollectionManager.studyGroupList = studyGroupList;
+    }
 }
